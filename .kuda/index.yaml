@@ -1,0 +1,19 @@
+name: lib-result
+root: /home/luis/GitHub/handl-lang/lib-result
+purpose: ''
+modules:
+- handl-lib-result
+- lib-result
+commands:
+- cargo check
+- cargo test --workspace
+provenance:
+  files:
+  - Cargo.toml
+  - src/lib.rs
+  hashes:
+  - 915b3738098633ad5e6a583df3ddcc706a9b2ce8
+  - 8628b409a2e8c767ceea47efc6e0bdf618613866
+  commit_sha: cd34c5e1f4fe5ae9f81467af5a350eb9a6885384
+  generated_at: '1792281230'
+  generator: kuda/0.1.0

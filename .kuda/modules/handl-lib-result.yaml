@@ -1,0 +1,21 @@
+name: handl-lib-result
+path: Cargo.toml
+purpose: 'result: Handl stdlib port (ADR-0128 split).'
+api:
+- name: handl-lib-result
+  kind: module
+  file: Cargo.toml
+  line: 1
+  module: handl-lib-result
+deps: []
+notes: ''
+verify:
+- Cargo.toml
+provenance:
+  files:
+  - Cargo.toml
+  hashes:
+  - 915b3738098633ad5e6a583df3ddcc706a9b2ce8
+  commit_sha: cd34c5e1f4fe5ae9f81467af5a350eb9a6885384
+  generated_at: '1792281230'
+  generator: kuda-template/0.1.0
