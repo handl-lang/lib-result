@@ -8,7 +8,7 @@
 --- The `Result<T, E>` type.
 --- @details
 --- A `Result<T, E>` is either `Ok(value: T)` or `Err(error: E)`.
-export Result<T, E> := Type
+export Result<T, E> := (t, e) ~> type.Type()
 
 --- Construct an Ok result wrapping a success value.
 --- @param {value} - the success value of type T
