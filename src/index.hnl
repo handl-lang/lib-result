@@ -14,12 +14,14 @@ export Result<T, E> := (t, e) ~> type.Type()
 --- @param {value} - the success value of type T
 --- @returns {Result<T, E>}
 export ok<T, E>: T ~[1]~> Result<T, E> := (value: T) ~> do {
-  tag.tag("ok", { value: value })
+  --- `tag.tag` is deleted (ADR-0152 §Migration): mint the `__tag__`
+  --- record directly via `hash_map.set`.
+  hash_map.set({ value: value }, "__tag__", "ok")
 }
 
 --- Construct an Err result wrapping an error value.
 --- @param {error} - the error value of type E
 --- @returns {Result<T, E>}
 export err<T, E>: E ~[1]~> Result<T, E> := (error: E) ~> do {
-  tag.tag("err", { value: error })
+  hash_map.set({ value: error }, "__tag__", "err")
 }
