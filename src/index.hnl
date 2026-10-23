@@ -1,7 +1,17 @@
 --- Result type and constructors.
 --- @details
 --- The `result` package provides the `Result<T, E>` type and the `ok`
---- / `err` constructors over the host tag system (ADR-0055/0077).
+--- / `err` constructors over the canonical `__ctor__` object shape
+--- (ADR-0152 §2 — the post-`__tag__` mint, phase-3 WS-F).
+---
+--- `ok(v)` mints `{"__ctor__": ok, value: v, type: Result}` — the same
+--- record a `data Result :: ok(value) | err(error)` declaration
+--- produces — so `match` dispatches on ctor-sym identity
+--- (`match v { ok(x): …, err(e): … }`), never a `__tag__` string. The
+--- mint stays manual rather than a `data` declaration because `data`'s
+--- spliced assigns bind module scope but produce no `export` record
+--- entry (the export transform is text-level); once `export`
+--- understands `data` declarations this file becomes `data Result`.
 
 --- @template T - the success value type
 --- @template E - the error value type
@@ -14,14 +24,16 @@ export Result<T, E> := (t, e) ~> type.Type()
 --- @param {value} - the success value of type T
 --- @returns {Result<T, E>}
 export ok<T, E>: T ~[1]~> Result<T, E> := (value: T) ~> do {
-  --- `tag.tag` is deleted (ADR-0152 §Migration): mint the `__tag__`
-  --- record directly via `hash_map.set`.
-  hash_map.set({ value: value }, "__tag__", "ok")
+  { "__ctor__": sym.seeded("data.Result.ok"),
+    "value": value,
+    "type": { "__former__": sym.seeded("data.Result"), "indices": [null, null] } }
 }
 
 --- Construct an Err result wrapping an error value.
 --- @param {error} - the error value of type E
 --- @returns {Result<T, E>}
 export err<T, E>: E ~[1]~> Result<T, E> := (error: E) ~> do {
-  hash_map.set({ value: error }, "__tag__", "err")
+  { "__ctor__": sym.seeded("data.Result.err"),
+    "value": error,
+    "type": { "__former__": sym.seeded("data.Result"), "indices": [null, null] } }
 }
