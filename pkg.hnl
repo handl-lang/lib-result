@@ -1,1 +1,1 @@
-{ modules: ["result"] }
+{ modules: ["result"], description: "Result type for Handl (pure handl).", license: "MIT" }

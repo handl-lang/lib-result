@@ -1,8 +1,21 @@
 # lib-result
 
-`result` — Handl stdlib port (pure handl).
+`result` — Result type for Handl (pure handl).
 
-Part of the stdlib → `lib-*` split (ADR-0128); moved from `stdlib/handl-packages/result/`.
+## Layout
+
+```text
+src/index.hnl         the library
+src/result.test.hnl   the .hnl test suite
+pkg.hnl               package manifest — modules, deps, description, license
+ci.sh                 bupha entry → scripts/hnl-gate.sh
+```
+
+## Gate
+
+```bash
+HNL=../host-cli/target/debug/hnl scripts/hnl-gate.sh
+```
 
 ## License
 
