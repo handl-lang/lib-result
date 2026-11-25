@@ -9,7 +9,7 @@
 | `src/index.hnl` | the library |
 | `src/result.test.hnl` | the .hnl test suite |
 | `pkg.hnl` | package manifest — `modules: ["result"]` |
-| `scripts/hnl-gate.sh`, `ci.sh` | the gate / bupha entry |
+| `scripts/hnl-gate.sh`, `workflows/gate.yaml` | the gate / bupha entry |
 
 ## Contract
 
