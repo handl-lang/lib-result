@@ -23,7 +23,7 @@ export Result<T, E> := (t, e) ~> type.Type()
 --- Construct an Ok result wrapping a success value.
 --- @param {value} - the success value of type T
 --- @returns {Result<T, E>}
-export ok<T, E>: T ~[1]~> Result<T, E> := (value: T) ~> do {
+export ok<T, E>: T ~>[1] Result<T, E> := (value: T) ~> do {
   { "__ctor__": sym.seeded("data.Result.ok"),
     "value": value,
     "type": { "__former__": sym.seeded("data.Result"), "indices": [null, null] } }
@@ -32,7 +32,7 @@ export ok<T, E>: T ~[1]~> Result<T, E> := (value: T) ~> do {
 --- Construct an Err result wrapping an error value.
 --- @param {error} - the error value of type E
 --- @returns {Result<T, E>}
-export err<T, E>: E ~[1]~> Result<T, E> := (error: E) ~> do {
+export err<T, E>: E ~>[1] Result<T, E> := (error: E) ~> do {
   { "__ctor__": sym.seeded("data.Result.err"),
     "value": error,
     "type": { "__former__": sym.seeded("data.Result"), "indices": [null, null] } }
