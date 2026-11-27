@@ -5,13 +5,14 @@
 --- (ADR-0152 §2 — the post-`__tag__` mint, phase-3 WS-F).
 ---
 --- `ok(v)` mints `{"__ctor__": ok, value: v, type: Result}` — the same
---- record a `data Result :: ok(value) | err(error)` declaration
+--- record a `Result := new Inductive { ok : (value : a) ~> Result(e, a), err : (error : e) ~> Result(e, a) }` declaration
 --- produces — so `match` dispatches on ctor-sym identity
 --- (`match v { ok(x): …, err(e): … }`), never a `__tag__` string. The
---- mint stays manual rather than a `data` declaration because `data`'s
---- spliced assigns bind module scope but produce no `export` record
---- entry (the export transform is text-level); once `export`
---- understands `data` declarations this file becomes `data Result`.
+--- mint stays manual rather than an inductive declaration because a
+--- family record's constructors bind module scope but produce no
+--- `export` record entry beyond the family name (the export transform
+--- is text-level); once `export` projects constructor names this file
+--- becomes `Result := new Inductive { … }`.
 
 --- @template T - the success value type
 --- @template E - the error value type
